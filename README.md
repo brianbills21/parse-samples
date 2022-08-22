@@ -43,5 +43,14 @@ Sample 8:       0x2303  0x5703  0x6203
 Sample 9:       0x1703  0x3103  0x3303
 ```
 ## Ignore invalid values 
-The script will ignore invalid values and return valid ones without exiting
+The script will ignore invalid and out of order values, and return valid results without exiting
+```
+./sample.sh -s 3,6-8,5-7,2 -c 2-3,3-6,9 samples.bin
+                Ch2     Ch3
+Sample 2:       0x4003  0xae03
+Sample 3:       0x3303  0xad03
+Sample 5:       0x3403  0xc403
+Sample 6:       0x5303  0x6103
+Sample 7:       0x4203  0x5803
+Sample 8:       0x5703  0x6203
 ```
