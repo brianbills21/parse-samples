@@ -1,4 +1,4 @@
-# parse-samples
+# Parse Sample Binary Files
 Bash script that runs awk and parses binary samples. The script reads from an input file and returns useful data in the form of samples and channels.
 ```
 The included binary file "samples.bin" contains a series of unsigned 16-bit values. 
