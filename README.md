@@ -1,7 +1,7 @@
 # parse-samples
 Bash script that runs awk and parses binary samples. The script reads from an input file and returns useful data in the form of samples and channels.
 ```
-The included binary file "samples.bin" contains a series unsigned 16-bit values. 
+The included binary file "samples.bin" contains a series of unsigned 16-bit values. 
 These values make up a series of "Samples" where each sample 
 is comprised of 4 channels and each channel is comprised of one 16-bit value.
 
