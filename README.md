@@ -12,11 +12,11 @@ Sample 0: u16 u16 u16 u16
 Sample 1: u16 u16 u16 u16
 ...
 Sample N: u16 u16 u16 u16
-```
+
 
 That is, the data for sample 0 contained in the first 8 bytes of the file. 
 The data for sample 1 is made up of the next 8 bytes and so on.
-
+```
 ## Total Samples
 Run the script sample.sh and return the total number of samples. Use the provided input file samples.bin for this example.
 ```
