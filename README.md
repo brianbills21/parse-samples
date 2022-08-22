@@ -24,6 +24,7 @@ Run the script sample.sh and return the total number of samples. Use the provide
 Total Samples: 374371
 ```
 ## Range of values for samples and channels
+Pass a set of ranges to the script for samples and channels
 ```
 ./sample.sh -s 0-9 -c 0-3 samples.bin
                 Ch0     Ch1     Ch2     Ch3
@@ -69,4 +70,9 @@ Sample 5:       0x3403  0xc403
 Sample 6:       0x5303  0x6103
 Sample 7:       0x4203  0x5803
 Sample 8:       0x5703  0x6203
+```
+## Force user to include input file
+```
+./sample18.sh -s 3,5,9,12 -c 0,3
+usage: ./sample18.sh ([-s samples] [-c channels] | -t) file
 ```
