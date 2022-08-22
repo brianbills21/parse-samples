@@ -4,6 +4,6 @@ Bash script that runs awk and parses binary samples. The script reads from an in
 ## Total Samples
 Run the script sample.sh and return the total number of samples. Use the privided input file samples.bin for this example.
 ```
-./sample18.sh -s -c -t samples.bin
+./sample18.sh -t samples.bin
 Total Samples: 374371
 ```
