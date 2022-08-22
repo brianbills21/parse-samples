@@ -42,3 +42,6 @@ Sample 7:       0x1003  0x4203  0x5803
 Sample 8:       0x2303  0x5703  0x6203
 Sample 9:       0x1703  0x3103  0x3303
 ```
+## Ignore invalid values 
+The script will ignore invalid values and return valid ones without exiting
+```
