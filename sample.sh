@@ -2,13 +2,13 @@
 
 samps=""
 chans=""
-total=false
+total="false"
 
 while getopts ':c:s:t' opt; do
     case $opt in
         s) samps="$OPTARG" ;;
         c) chans="$OPTARG" ;;
-        t) total=true ;;
+        t) total="true" ;;
         *) printf 'Unrecognized option "%s"\n' "$opt" >&2
     esac
 done
@@ -24,44 +24,69 @@ infile=$1
 read -r size _ < <(wc -c "$infile")
 lines=$(( (size - 1) / 8 ))             # last line number
 
-if [[ $total == true ]]; then
+if [[ $total == "true" ]]; then
   printf "Total Samples: "$(hexdump -v -e '8/1 "%02x " "\n"' "$infile" | wc -l)"\n"
-else {
-hexdump -v -e '8/1 "%02x " "\n"' samples.bin |
-awk -v samps="${samps}" -v chans="${chans}" '
+else
+  hexdump -v -e '8/1 "%02x " "\n"' "$infile" |
+  awk -v samps="$samps" -v chans="$chans" -v lines="$lines" '
 
-function fill_array(var,arr) {                             # NOTE: arrays are passed by reference so changes made here are maintained in parent
-
-    m=split(var,_a,",")                                    # split variables on comma
-    for (i=1;i<=m;i++) {
-        n=split(_a[i],_b,"-")                              # further split each field on hyphen
-        for (j=_b[1];j<=(n==1 ? _b[1] : _b[2]);j++)        # if no hyphen => n==1 so just re-use _b[1]
-            arr[j]                                         # store value as array index
-    }
-}
-
-BEGIN { OFS="\t"
-
-        fill_array(samps,samps_arr)                        # parse variable "samps" and store as indices of samps_arr[] array
-        fill_array(chans,chans_arr)                        # parse variable "chans" and store as indices of chans_arr[] array
-
-        printf "%s", OFS                                   # print header ...
-        for (i=0;i<=3;i++)                                 # loop through possible channel numbers and ...
-            if (i in chans_arr)                            # if an index in the chans_arr[] array then ...
-               printf "%sCh%d", OFS, i                     # print the associated header
-        print ""                                           # terminate printf line
-      }
-
-      { if ((FNR-1) in samps_arr) {                        # if current line number (minus 1) is in samps_arr[] array then ...
-           printf "Sample %d:", (FNR-1)                    # print our "Sample #:" line ...
-           for (i=1;i<=NF;i=i+2) {                         # loop through odd-numbered fields and ...
-               if ( (i-1)/2 in chans_arr) {                # if the associated group # is in the chans_arr[] array then ...
-                  printf "%s0x%s%s", OFS, $(i), $(i+1)     # add to our output line
-               }
-           }
-           print ""                                        # terminate printf line
+  # expand comma-separated range parameters into individual numbers
+  # assigning indexes of array "a"
+  # omitted range parameters default to min or max individually
+  function expn(str, a, min, max,     i, j, b, c, l, last) {
+    if (str == "") {                            # if "str" is empty
+      for (i = min; i <= max; i++) a[i]         # then set full range
+      last = max
+    } else {
+      gsub(/[^0-9,-]/, "", str)                 # remove irregular characters
+      split(str, b, /,/)                        # split on ","
+        for (i in b) {                          # loop over csv
+          l = split(b[i], c, /-/)               # split on "-"
+          if (l == 1) {                         # single number
+            c[2] = c[1]                         # copy to c[2] to update "last"
+            a[c[1]]
+          } else if (l == 2) {                  # dash-ranged numbers
+            if (c[1] == "") c[1] = min          # default to "min"
+            if (c[2] == "") c[2] = max          # default to "max"
+              for (j = c[1]; j <= c[2]; j++) a[j]
+          }
+          if (last < c[2]) last = c[2]          # update the "last" line number
         }
       }
-'
-}
+      return last                               # last line number to process
+    }
+
+    BEGIN {
+      # expand sample string to array "srange"
+      last = expn(samps, srange, 0, lines)
+      # expand channel string to array "crange"
+      expn(chans, crange, 0, 3)
+
+      # print channel header row
+      printf "\t"
+      for (c = 0; c <= 3; c++) {
+        if (c in crange) {
+          printf("\tCh%d", c)
+        }
+      }
+      print ""
+    }
+    {
+      if (NR-1 > last) exit             # exit earlier if remaining are out of interest
+      if (NR-1 in srange) {
+        # print sample range
+        printf("Sample %d:", NR-1)
+
+        # print channel range in sample line
+        for (c = 0; c <= 3; c++) {
+          if (c in crange) {
+            i = c * 2 + 1
+            j = i + 1
+            printf("\t0x%s%s", $i, $j)
+          }
+        }
+        print ""
+      }
+    }
+  '
 fi
