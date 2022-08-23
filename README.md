@@ -82,7 +82,7 @@ usage: ./sample.sh ([-s samples] [-c channels] | -t) file
 ## Return a single plot point
 Of course you will want to return a single plot point (sample)
 ```
-./sample18.sh -s 0 -c 0 samples.bin
+./sample.sh -s 0 -c 0 samples.bin
                 Ch0
 Sample 0:       0x1a03
 ```
