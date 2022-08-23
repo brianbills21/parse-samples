@@ -48,7 +48,7 @@ Sample 5:       0xe003  0xc403
 Sample 9:       0x1703  0x3303
 Sample 12:      0xba03  0xa003
 ```
-## Mixed ranges and consecutive values
+## Mixed ranges and nonconsecutive values
 ```
 ./sample.sh -s 1,3,5,7-9 -c 0,2-3 samples.bin
                 Ch0     Ch2     Ch3
