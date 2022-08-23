@@ -40,7 +40,7 @@ Sample 8:       0x2303  0x1f03  0x5703  0x6203
 Sample 9:       0x1703  0x7303  0x3103  0x3303
 ```
 ## Nonconsecutive values for samples and channels
-Nonconsecutive values are delimited by `-` commas
+Nonconsecutive values are delimited by `,` commas
 ```
 ./sample.sh -s 3,5,9,12 -c 0,3 samples.bin
                 Ch0     Ch3
