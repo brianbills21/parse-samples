@@ -20,7 +20,7 @@ The data for sample 1 is made up of the next 8 bytes and so on.
 ## Total Samples
 Run the script sample.sh and return the total number of samples. Use the provided input file samples.bin for this example.
 ```
-./sample18.sh -t samples.bin
+./sample.sh -t samples.bin
 Total Samples: 374371
 ```
 ## Range of values for samples and channels
