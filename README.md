@@ -1,22 +1,21 @@
 # Parse Sample Binary Files
 Bash script that runs awk and parses binary samples. The script reads from an input file and returns useful data in the form of samples and channels.
-```
+
 The included binary file "samples.bin" contains a series of unsigned 16-bit values. 
 These values make up a series of "Samples" where each sample is comprised of 4 channels 
 and each channel is comprised of one 16-bit value.
 
 The data is structured like so:
-
+```
           ch0 ch1 ch3 ch3
 Sample 0: u16 u16 u16 u16 
 Sample 1: u16 u16 u16 u16
 ...
 Sample N: u16 u16 u16 u16
-
-
+```
 That is, the data for sample 0 contained in the first 8 bytes of the file. 
 The data for sample 1 is made up of the next 8 bytes and so on.
-```
+
 ## Total Samples
 Run the script sample.sh and return the total number of samples. Use the provided input file samples.bin for this example.
 ```
