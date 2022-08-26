@@ -1,5 +1,5 @@
 # Parse Sample Binary Files
-This repo contains a bash script (samples.sh), that runs awk and parses binary samples. The script reads from an input file and returns useful data in the form of samples and channels.
+This repo contains a bash script (sample.sh), that runs awk and parses binary samples. The script reads from an input file and returns useful data in the form of samples and channels.
 
 The included binary file "samples.bin" contains a series of unsigned 16-bit values. These values make up a series of "Samples" where each sample is comprised of 4 channels and each channel is comprised of one 16-bit value.
 
