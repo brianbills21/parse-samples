@@ -84,6 +84,7 @@ Sample 0:       0x1a03
 ```
 ## Return Total Samples and Samples Processed
 ```
+./sample.sh -s 0-9 -c 0,3 -t samples.bin
                 Ch0     Ch3
 Sample 0:       0x1a03  0x5703
 Sample 1:       0x4b03  0x0904
@@ -100,7 +101,22 @@ Total Samples Processed:        10
 ```
 ## Process all samples and return Samples Processed along with Total Samples
 ```
+./sample.sh -t samples.bin
 ****Truncated****
+Sample 374365:  0xee03  0x2c03  0x4503  0xf204
+Sample 374366:  0x1a03  0xba03  0x4103  0x9c03
+Sample 374367:  0x6103  0x3903  0x4703  0xf703
+Sample 374368:  0x1603  0xf403  0x3403  0x7f03
+Sample 374369:  0x7003  0x9903  0x3503  0x3503
+Sample 374370:  0x1303  0x4b03  0x3703  0x8f03
+Total Samples in samples.bin:   374371
+Total Samples Processed:        374371
+```
+## Redirect output to file
+```
+./sample.sh -o samples.bin
+tail -9 outfile-08-29-2022.13:31:48
+Sample 374364:  0x3403  0x0d03  0x4403  0x7803
 Sample 374365:  0xee03  0x2c03  0x4503  0xf204
 Sample 374366:  0x1a03  0xba03  0x4103  0x9c03
 Sample 374367:  0x6103  0x3903  0x4703  0xf703
