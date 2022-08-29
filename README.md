@@ -16,8 +16,8 @@ That is, the data for sample 0 is contained in the first 8 bytes of the file. Th
 ## Total Samples
 Run the script sample.sh and return the total number of samples. Use the provided input file samples.bin for this example.
 ```
-./sample.sh -t samples.bin
-Total Samples: 374371
+./sample.sh -r samples.bin
+Total Samples in samples.bin: 374371
 ```
 ## Range of values for samples and channels
 Pass a set of ranges delimited by `-` hyphens to the script for samples and channels
@@ -81,4 +81,32 @@ Of course you will want to return a single plot point (sample)
 ./sample.sh -s 0 -c 0 samples.bin
                 Ch0
 Sample 0:       0x1a03
+```
+## Return Total Samples and Samples Processed
+```
+                Ch0     Ch3
+Sample 0:       0x1a03  0x5703
+Sample 1:       0x4b03  0x0904
+Sample 2:       0x1003  0xae03
+Sample 3:       0x1e03  0xad03
+Sample 4:       0x1003  0x6203
+Sample 5:       0xe003  0xc403
+Sample 6:       0xf802  0x6103
+Sample 7:       0x1003  0x5803
+Sample 8:       0x2303  0x6203
+Sample 9:       0x1703  0x3303
+Total Samples in samples.bin:   374371
+Total Samples Processed:        10
+```
+## Process all samples and return Samples Processed along with Total Samples
+```
+****Truncated****
+Sample 374365:  0xee03  0x2c03  0x4503  0xf204
+Sample 374366:  0x1a03  0xba03  0x4103  0x9c03
+Sample 374367:  0x6103  0x3903  0x4703  0xf703
+Sample 374368:  0x1603  0xf403  0x3403  0x7f03
+Sample 374369:  0x7003  0x9903  0x3503  0x3503
+Sample 374370:  0x1303  0x4b03  0x3703  0x8f03
+Total Samples in samples.bin:   374371
+Total Samples Processed:        374371
 ```
