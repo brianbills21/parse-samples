@@ -115,7 +115,9 @@ Total Samples Processed:        374371
 ## Redirect output to file
 ```
 ./sample.sh -o samples.bin
+
 tail -9 outfile-08-29-2022.13:31:48
+
 Sample 374364:  0x3403  0x0d03  0x4403  0x7803
 Sample 374365:  0xee03  0x2c03  0x4503  0xf204
 Sample 374366:  0x1a03  0xba03  0x4103  0x9c03
