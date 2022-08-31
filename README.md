@@ -73,7 +73,7 @@ Sample 8:       0x5703  0x6203
 The user must include the input file. (This is desired as hard coding input files is not a good practice)
 ```
 ./sample.sh -s 3,5,9,12 -c 0,3
-usage: ./sample.sh ([-s samples] [-c channels] | -t) file
+usage: ./sample22.sh ([-s samples] [-c channels] | -t | -r | -o) file
 ```
 ## Return a single plot point
 Of course you will want to return a single plot point (sample)
